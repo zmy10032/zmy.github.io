@@ -69,10 +69,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-北太天元学习笔记/study13" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-北太天元学习笔记/study19" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study13/" class="article-date">
-  <time class="dt-published" datetime="2024-09-05T09:27:08.173Z" itemprop="datePublished">2024-09-05</time>
+    <a href="/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study19/" class="article-date">
+  <time class="dt-published" datetime="2024-09-05T09:27:08.182Z" itemprop="datePublished">2024-09-05</time>
 </a>
     
   </div>
@@ -81,58 +81,33 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1 id="北太天元学习13——调试m函数"><a href="#北太天元学习13——调试m函数" class="headerlink" title="北太天元学习13——调试m函数"></a>北太天元学习13——调试m函数</h1><p> <strong>和 Ideal 几乎一样</strong></p>
+        <h1 id="北太天元学习19-谷歌搜索算法-page-rank-algorithm-简介"><a href="#北太天元学习19-谷歌搜索算法-page-rank-algorithm-简介" class="headerlink" title="北太天元学习19-谷歌搜索算法(page rank algorithm)简介"></a>北太天元学习19-谷歌搜索算法(page rank algorithm)简介</h1><p>我们假设有4个网页<br>在初始时刻，网页1有很多人在浏览，其他网页无人浏览<br>所有浏览网页的人记作1<br>每隔一个单位时间都有部分人转移到别的网页<br>定义在时间n时的态为<br><code>p_n = [p_&#123;1, n&#125;, p_&#123;2, n&#125;, p_&#123;3, n&#125;, p_&#123;4, n&#125;]</code><br>其中p_{i, n}表示在n时刻处在网页i上的浏览者的比例<br>所以初始态<code>p_0 = [1, 0, 0, 0]</code><br><strong>p_{n + 1} 和 p_{n} 之间的关系是建模的重点</strong>：<br><code>p_&#123;n + 1&#125; = A * p_&#123;n&#125;</code><br>其中矩阵 A 称为<strong>状态转移矩阵</strong><br>则<code>p_&#123;1, n+1&#125; = A(1, 1) * p_&#123;1, n&#125; + A(1, 2) * p_&#123;2, n&#125; + A(1, 3) * p_&#123;3, n&#125; + A(1, 4) * p_&#123;4, n&#125;</code><br>如果考虑有人不想浏览网页了，可以增加第五个“网页”，到第五个“网页”就表示下网了。</p>
+<p>我们可以这样来建模：</p>
 <ol>
-<li><strong>设置断点</strong>：<br> 点一下行数左边就行，或者用<code>dbstop</code>指令。例如，<code>dbstop(&quot;isprimeEx&quot;, 5)</code> 就是在 isprimeEx 文件的第5行设置断点，&#x3D;&#x3D;注意 isprimeEx 后面不要加 .m&#x3D;&#x3D;</li>
-<li><strong>开启调试</strong>：<br> 可以按“调试”按钮或者用 <code>dbon</code> 开始调试<br> 在 m 函数中，可以在<code>K &gt;&gt; </code>的后面输入要传入的参数，例如：<code>K &gt;&gt; isprime(666)</code></li>
-<li><strong>下一步</strong>：<br> 可以按“单步调试”或者用<code>dbnext</code>执行下一步<br> 按“继续调试”或者用<code>dbcontinue</code>是执行到下一个断点</li>
-<li><strong>检查值</strong>：<br> 把鼠标悬停在某变量上方可以看到变量的值，也能从工作区直接看</li>
-<li><strong>修改值</strong>：<br> 在工作区 双击变量 或者 右键变量再按编辑值 可以实时修改变量的值<br> &#x3D;&#x3D;注意不要在调试过程中修改 m 文件的代码，不然会有意外惊喜的哟&#x3D;&#x3D;</li>
-<li><strong>结束调试</strong>：<br>直接按停止按钮或者用<code>dboff</code>结束调试</li>
-<li><strong>清除断点</strong>：<br> 一个一个在脚本上手动清除或者用<code>dbclear</code>一键清除</li>
+<li>如果第i个网页有k个其他网页的链接，那么转移到它们的概率是1&#x2F;(k + 1)</li>
+<li>如果该网页没有其他网页的链接，那么浏览者会随机选择一个网站</li>
 </ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study13/" data-id="cm0p3374f00029sl7ccfzcign" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-北太天元学习笔记/study16" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study16/" class="article-date">
-  <time class="dt-published" datetime="2024-09-05T09:27:08.173Z" itemprop="datePublished">2024-09-05</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="北太天元学习16-矩阵运算"><a href="#北太天元学习16-矩阵运算" class="headerlink" title="北太天元学习16-矩阵运算"></a>北太天元学习16-矩阵运算</h1><p>视频前面讲了 矩阵乘法、逆矩阵 等等在《线性代数》里学过的东西，这里就略去了</p>
+<p>给一个具体的例子：<br>网页1拥有链接2、4，网页2没有链接，网页3有链接1，网页4有链接2、3<br>那么 A &#x3D;<br>1&#x2F;3 1&#x2F;4 1&#x2F;2 0<br>1&#x2F;3 1&#x2F;4 0 1&#x2F;3<br>0 1&#x2F;4 1&#x2F;2 1&#x2F;3<br>1&#x2F;3 1&#x2F;4 0 1&#x2F;3<br>x_0 &#x3D; [1; 0; 0; 0]</p>
+<p>脚本代码如下：</p>
+<blockquote>
+<p>A &#x3D; [1&#x2F;3 1&#x2F;4 1&#x2F;2 0<br>1&#x2F;3 1&#x2F;4 0 1&#x2F;3<br>0 1&#x2F;4 1&#x2F;2 1&#x2F;3<br>1&#x2F;3 1&#x2F;4 0 1&#x2F;3];<br>初始p &#x3D; [1; 0; 0; 0];<br>N &#x3D; 20;<br>p &#x3D; zeros(4, N);<br>p(:, 1) &#x3D; 初始p;<br>for n &#x3D; 1:N<br>p(:, n + 1) &#x3D; A * p(:, n);<br>end<br>hold on<br>for j &#x3D; 1:4<br>plot(1:N, p(j, :), ‘LineWidth’, 3);<br>str(j) &#x3D; sprintf(“网页%d”, j);<br>label_str(j) &#x3D; sprintf(“网页%d最终占比%d%%”, j, 100*p(:, end));<br>end<br>hold off;<br>legend(str);<br>figure(2)<br>pie(p(:, end), label_str);</p>
+</blockquote>
 <ul>
-<li><code>diag(1, 5, 6)</code> 可以生成对角矩阵<br>1 0 0<br>0 5 0<br>0 0 6</li>
-<li><code>inv(A)</code> 可以求 A 的逆矩阵</li>
-<li>矩阵计算的时候可能会有误差，比如 1e-16 其实就是 0</li>
-<li>已知 <code>Ax = b</code> ，就能用 <code>x = inv(A)*b</code> 或者 <code>x = A\b</code> 来算 x 了（“\”是左除）</li>
-<li><code>det(A)</code> 得到矩阵的行列式</li>
-<li><code>A = rand(m, n)</code> 生成一个 m x n 的随机矩阵，<code>A = rand(k)</code> 生成一个 k x k 的随机矩阵</li>
+<li><code>str(j) = sprintf(......)</code> 将输出写入到字符串中，而不是直接输出到屏幕</li>
+<li><code>figure(2)</code> 创建编号为 2 的图形窗口。如果 2 号窗口已经存在，它将霸占这个窗口</li>
+<li><code>pie(p(:end), label_str)</code> 画一个饼图，把label_str里的字符串按顺序放在饼各部分旁边</li>
 </ul>
+<p>视频最后有个发现：最终态是稳定的，并且这个态 ppp 和 A 最大特征值对应的特征向量 pp 成比例:<br><code>ppp = pp/norm(pp, 1)</code></p>
+<ul>
+<li><code>norm(pp, 1)</code> 得到 pp 的长度</li>
+</ul>
+<p>但原理是啥并没有解释</p>
+<p>&#x3D;&#x3D;此算法可能在足球比赛、投票等题目中出现&#x3D;&#x3D;</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study16/" data-id="cm0p3374f00039sl77wcf998a" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study19/" data-id="cm0p38trl0008ugl73rex427i" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -174,7 +149,82 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study14/" data-id="cm0p3374g00049sl70d6abc2g" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study14/" data-id="cm0p38trh0003ugl70oli9yn2" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-北太天元学习笔记/study13" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study13/" class="article-date">
+  <time class="dt-published" datetime="2024-09-05T09:27:08.173Z" itemprop="datePublished">2024-09-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="北太天元学习13——调试m函数"><a href="#北太天元学习13——调试m函数" class="headerlink" title="北太天元学习13——调试m函数"></a>北太天元学习13——调试m函数</h1><p> <strong>和 Ideal 几乎一样</strong></p>
+<ol>
+<li><strong>设置断点</strong>：<br> 点一下行数左边就行，或者用<code>dbstop</code>指令。例如，<code>dbstop(&quot;isprimeEx&quot;, 5)</code> 就是在 isprimeEx 文件的第5行设置断点，&#x3D;&#x3D;注意 isprimeEx 后面不要加 .m&#x3D;&#x3D;</li>
+<li><strong>开启调试</strong>：<br> 可以按“调试”按钮或者用 <code>dbon</code> 开始调试<br> 在 m 函数中，可以在<code>K &gt;&gt; </code>的后面输入要传入的参数，例如：<code>K &gt;&gt; isprime(666)</code></li>
+<li><strong>下一步</strong>：<br> 可以按“单步调试”或者用<code>dbnext</code>执行下一步<br> 按“继续调试”或者用<code>dbcontinue</code>是执行到下一个断点</li>
+<li><strong>检查值</strong>：<br> 把鼠标悬停在某变量上方可以看到变量的值，也能从工作区直接看</li>
+<li><strong>修改值</strong>：<br> 在工作区 双击变量 或者 右键变量再按编辑值 可以实时修改变量的值<br> &#x3D;&#x3D;注意不要在调试过程中修改 m 文件的代码，不然会有意外惊喜的哟&#x3D;&#x3D;</li>
+<li><strong>结束调试</strong>：<br>直接按停止按钮或者用<code>dboff</code>结束调试</li>
+<li><strong>清除断点</strong>：<br> 一个一个在脚本上手动清除或者用<code>dbclear</code>一键清除</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study13/" data-id="cm0p38tri0004ugl77jny4vdo" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-北太天元学习笔记/study16" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study16/" class="article-date">
+  <time class="dt-published" datetime="2024-09-05T09:27:08.173Z" itemprop="datePublished">2024-09-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="北太天元学习16-矩阵运算"><a href="#北太天元学习16-矩阵运算" class="headerlink" title="北太天元学习16-矩阵运算"></a>北太天元学习16-矩阵运算</h1><p>视频前面讲了 矩阵乘法、逆矩阵 等等在《线性代数》里学过的东西，这里就略去了</p>
+<ul>
+<li><code>diag(1, 5, 6)</code> 可以生成对角矩阵<br>1 0 0<br>0 5 0<br>0 0 6</li>
+<li><code>inv(A)</code> 可以求 A 的逆矩阵</li>
+<li>矩阵计算的时候可能会有误差，比如 1e-16 其实就是 0</li>
+<li>已知 <code>Ax = b</code> ，就能用 <code>x = inv(A)*b</code> 或者 <code>x = A\b</code> 来算 x 了（“\”是左除）</li>
+<li><code>det(A)</code> 得到矩阵的行列式</li>
+<li><code>A = rand(m, n)</code> 生成一个 m x n 的随机矩阵，<code>A = rand(k)</code> 生成一个 k x k 的随机矩阵</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study16/" data-id="cm0p38trj0005ugl75f66cte7" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -223,7 +273,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study11/" data-id="cm0p3374d00019sl76rxt65yp" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study11/" data-id="cm0p38trh0002ugl7hcv4at92" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -296,7 +346,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study10/" data-id="cm0p3374700009sl722ltfocs" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study10/" data-id="cm0p38trf0001ugl77hnwdc2x" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -338,7 +388,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study9/" data-id="cm0p33750000j9sl7hbpdd1vp" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study9/" data-id="cm0p38trr000jugl74w9gd5ra" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -380,7 +430,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study5/" data-id="cm0p3374z000h9sl78ihdfxl7" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study5/" data-id="cm0p38trq000iugl78y7k0sc9" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -424,7 +474,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study4/" data-id="cm0p33750000i9sl7f9bhhjzp" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study4/" data-id="cm0p38trq000hugl76qkv5k9p" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -462,49 +512,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study3/" data-id="cm0p3374z000g9sl7536v5gqy" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-北太天元学习笔记/stydy21" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/stydy21/" class="article-date">
-  <time class="dt-published" datetime="2024-09-05T09:27:08.129Z" itemprop="datePublished">2024-09-05</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="北太天元学习21——随机模型"><a href="#北太天元学习21——随机模型" class="headerlink" title="北太天元学习21——随机模型"></a>北太天元学习21——随机模型</h1><ul>
-<li><code>rand</code> 生成一个（0，1）的随机数<br>要生成一个在2~8的随机数，用 <code>2*rand + 8</code> 即可</li>
-<li><code>rand(n)</code> 生成一个 n x n 的随机矩阵，每个元素都是（0，1）</li>
-<li><code>rand(m, n)</code> 生成一个 m x n 的随机矩阵</li>
-</ul>
-<p>下面是 <strong>醉汉走丢</strong> 的例子：<br>一个醉汉在每个单位时间里在 x，y 方向都要走 +1 或者 -1 个长度<br>下面是画出醉汉可能路径的脚本：</p>
-<blockquote>
-<p>load_plugin(“time”)<br>N &#x3D; 100; % 每一次出发走的总步数<br>总次数 &#x3D; 200;<br>x(1) &#x3D; 0;<br>y(1) &#x3D; 0;<br>for m &#x3D; 1:总次数<br>hold on<br>plot(-25:25, -25:25);<br>for n &#x3D; 1:N<br>sx &#x3D; sign(rand - 0.5);<br>x(n + 1) &#x3D; x(n) + sx;<br>sy &#x3D; sign(rand - 0.5);<br>y(n + 1) &#x3D; y(n) + sy;<br>plot(x(n:n+1), y(n:n+1), ‘LineWidth’, 10);<br>str &#x3D; sprintf(“第%d次出发，第%d步”, m, n);<br>title(str);<br>pause(0.2);<br>end<br>clf;<br>hold on<br>plot(-25:25, -25:25);<br>plot(x, y, ‘LineWidth’, 10)<br>pause(1);<br>hold off<br>end</p>
-</blockquote>
-<ul>
-<li><code>load_plugin(&quot;time&quot;)</code> 加载的插件用于后面的 <code>pause(114514)</code> ，就是让画图时停顿114514秒，方便看清</li>
-<li><code>clf</code> 可以清除画面内容</li>
-<li><code>plot(-25:25, -25:25);</code> 控制画面大小为 50 x 50</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/stydy21/" data-id="cm0p33751000k9sl724qz0ksy" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study3/" data-id="cm0p38trq000gugl7byzm5lj0" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -520,7 +528,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -552,7 +560,7 @@
       <ul>
         
           <li>
-            <a href="/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study29/">(no title)</a>
+            <a href="/2024/09/05/hello/hello/">(no title)</a>
           </li>
         
           <li>
@@ -560,15 +568,15 @@
           </li>
         
           <li>
+            <a href="/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study29/">(no title)</a>
+          </li>
+        
+          <li>
             <a href="/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study27/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study20/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study24/">(no title)</a>
+            <a href="/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study22/">(no title)</a>
           </li>
         
       </ul>
