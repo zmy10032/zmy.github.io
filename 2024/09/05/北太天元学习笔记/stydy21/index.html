@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="北太天元学习21——随机模型 rand 生成一个（0，1）的随机数要生成一个在2~8的随机数，用 2*rand + 8 即可 rand(n) 生成一个 n x n 的随机矩阵，每个元素都是（0，1） rand(m, n) 生成一个 m x n 的随机矩阵  下面是 醉汉走丢 的例子：一个醉汉在每个单位时间里在 x，y 方向都要走 +1 或者 -1 个长度下面是画出醉汉可能路径的脚本：  load_">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/stydy21/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="北太天元学习21——随机模型 rand 生成一个（0，1）的随机数要生成一个在2~8的随机数，用 2*rand + 8 即可 rand(n) 生成一个 n x n 的随机矩阵，每个元素都是（0，1） rand(m, n) 生成一个 m x n 的随机矩阵  下面是 醉汉走丢 的例子：一个醉汉在每个单位时间里在 x，y 方向都要走 +1 或者 -1 个长度下面是画出醉汉可能路径的脚本：  load_">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-09-05T09:27:08.129Z">
+<meta property="article:modified_time" content="2024-08-14T10:34:26.202Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-北太天元学习笔记/stydy21" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/stydy21/" class="article-date">
+  <time class="dt-published" datetime="2024-09-05T09:27:08.129Z" itemprop="datePublished">2024-09-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="北太天元学习21——随机模型"><a href="#北太天元学习21——随机模型" class="headerlink" title="北太天元学习21——随机模型"></a>北太天元学习21——随机模型</h1><ul>
+<li><code>rand</code> 生成一个（0，1）的随机数<br>要生成一个在2~8的随机数，用 <code>2*rand + 8</code> 即可</li>
+<li><code>rand(n)</code> 生成一个 n x n 的随机矩阵，每个元素都是（0，1）</li>
+<li><code>rand(m, n)</code> 生成一个 m x n 的随机矩阵</li>
+</ul>
+<p>下面是 <strong>醉汉走丢</strong> 的例子：<br>一个醉汉在每个单位时间里在 x，y 方向都要走 +1 或者 -1 个长度<br>下面是画出醉汉可能路径的脚本：</p>
+<blockquote>
+<p>load_plugin(“time”)<br>N &#x3D; 100; % 每一次出发走的总步数<br>总次数 &#x3D; 200;<br>x(1) &#x3D; 0;<br>y(1) &#x3D; 0;<br>for m &#x3D; 1:总次数<br>hold on<br>plot(-25:25, -25:25);<br>for n &#x3D; 1:N<br>sx &#x3D; sign(rand - 0.5);<br>x(n + 1) &#x3D; x(n) + sx;<br>sy &#x3D; sign(rand - 0.5);<br>y(n + 1) &#x3D; y(n) + sy;<br>plot(x(n:n+1), y(n:n+1), ‘LineWidth’, 10);<br>str &#x3D; sprintf(“第%d次出发，第%d步”, m, n);<br>title(str);<br>pause(0.2);<br>end<br>clf;<br>hold on<br>plot(-25:25, -25:25);<br>plot(x, y, ‘LineWidth’, 10)<br>pause(1);<br>hold off<br>end</p>
+</blockquote>
+<ul>
+<li><code>load_plugin(&quot;time&quot;)</code> 加载的插件用于后面的 <code>pause(114514)</code> ，就是让画图时停顿114514秒，方便看清</li>
+<li><code>clf</code> 可以清除画面内容</li>
+<li><code>plot(-25:25, -25:25);</code> 控制画面大小为 50 x 50</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/stydy21/" data-id="cm0p33751000k9sl724qz0ksy" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study3/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/09/">September 2024</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study29/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study28/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study27/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study20/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study24/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

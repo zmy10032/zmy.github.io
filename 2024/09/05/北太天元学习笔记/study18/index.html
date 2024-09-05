@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="北太天元学习18-离散模型以人口模型为例设 x_{n} 是时间 n 时的人口数量，则递归关系可以由以下方程给出：x_&#123;n&#125; &#x3D; f (x_&#123;0&#125;, x_&#123;1&#125;, x_&#123;2&#125;, ......, x_&#123;n-1&#125;)也就是说，x_{n} 是先前所有时间人口的函数。  形式为 x_&#123;n&#125;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study18/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="北太天元学习18-离散模型以人口模型为例设 x_{n} 是时间 n 时的人口数量，则递归关系可以由以下方程给出：x_&#123;n&#125; &#x3D; f (x_&#123;0&#125;, x_&#123;1&#125;, x_&#123;2&#125;, ......, x_&#123;n-1&#125;)也就是说，x_{n} 是先前所有时间人口的函数。  形式为 x_&#123;n&#125;">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-09-05T09:27:08.182Z">
+<meta property="article:modified_time" content="2024-08-14T02:04:02.364Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-北太天元学习笔记/study18" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study18/" class="article-date">
+  <time class="dt-published" datetime="2024-09-05T09:27:08.182Z" itemprop="datePublished">2024-09-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="北太天元学习18-离散模型"><a href="#北太天元学习18-离散模型" class="headerlink" title="北太天元学习18-离散模型"></a>北太天元学习18-离散模型</h1><h2 id="以人口模型为例"><a href="#以人口模型为例" class="headerlink" title="以人口模型为例"></a>以人口模型为例</h2><p>设 x_{n} 是时间 n 时的人口数量，则递归关系可以由以下方程给出：<br><code>x_&#123;n&#125; = f (x_&#123;0&#125;, x_&#123;1&#125;, x_&#123;2&#125;, ......, x_&#123;n-1&#125;)</code><br>也就是说，x_{n} 是先前所有时间人口的函数。</p>
+<ul>
+<li><p>形式为 <code>x_&#123;n&#125; = f (x_&#123;n-1&#125;)</code> 称作一阶递推关系，因为它只依赖于上一个时间的值；<br><code>x_&#123;n&#125; = f (x_&#123;n-1&#125;, x_&#123;n-2&#125;)</code> 是二阶递推关系</p>
+<p><strong>如果一个模型用一个或多个递推关系来描述某些现象，则称其为离散动力系统</strong></p>
+</li>
+<li><p>假设人口在下一时间的增长与当前人口成正比，则<br><code>x_&#123;n+1&#125; - x_&#123;n&#125; = k*x_&#123;n&#125;</code> ，即<code>x_&#123;n+1&#125; = (k+1)*x_&#123;n&#125;</code><br>这是一个一阶递推关系，被称为<strong>指数增长模型</strong>，也叫<strong>马尔萨斯模型</strong></p>
+</li>
+<li><p>通常情况下，人口不会指数增长，增长到一定程度会减缓。<strong>逻辑斯蒂克模型</strong>刻画了增长率随人口接近最大容量的变化：<br> <code>x_&#123;n+1&#125; - x_&#123;n&#125; = r * x_&#123;n&#125; * (1 - x_&#123;n&#125;/K)</code><br> 其中K是承载能力。<br> 化成二次函数就是：<code>x_&#123;n+1&#125; = (1 + r) * x_&#123;n&#125; - r * x_&#123;n&#125;^2/K</code><br> 这是一个非线性递推关系</p>
+</li>
+<li><p>对于指数增长模型，根据 x_{0} 和 x_{1} ，可以确定 k</p>
+</li>
+<li><p>对于逻辑斯蒂克模型，根据 x_{0}, x_{1}, x_{2}, 可以确定 r 和 K</p>
+</li>
+</ul>
+<hr>
+<p>现在引入一个新词语 —— 态</p>
+<ul>
+<li><p>我们仅仅考虑生活在草原上的两种动物：兔子和狼 构成的系统</p>
+</li>
+<li><p>这个系统在时间 t 的态可以用向量表示：x_{t} &#x3D; [ 兔_{t}, 狼_{t} ]  </p>
+</li>
+<li><p>下面给出一个简单的 <strong>捕食者-被捕食者（predator_pray）</strong> 离散模型<br><code>兔_&#123;t + 1&#125; = (1 + r) * 兔_&#123;t&#125; - f * 狼_&#123;t&#125; * 兔_&#123;t&#125;</code><br><code>狼_&#123;t + 1&#125; = (1 + w) * 狼_&#123;t&#125; + g * 狼_&#123;t&#125; * 兔_&#123;t&#125;</code><br>r, w 是兔子和狼的自然增长率，f 和 g 反应兔狼相逢对他们数量的影响。这些参数可以由 <code>[兔_&#123;0&#125;; 狼_&#123;0&#125;]</code>, <code>[兔_&#123;1&#125;; 狼_&#123;1&#125;]</code> 来确定。<br>下面给出脚本代码：</p>
+<blockquote>
+<p>x &#x3D; [1000, 1];<br>  r &#x3D; 0.01; f &#x3D; 1e-4; w &#x3D; 2e-3; g &#x3D; 3e-5;<br>  para &#x3D; [r; w; w; g];<br>  x1 &#x3D; pp_step(x, para);<br>  x2 &#x3D; pp_step(x1, para);<br>  A &#x3D; [x(1), 0, -x(1)*x(2), 0;<br>       0, x(2), 0, x(1)*x(2);<br>       x1(1), 0, -x1(1)*x1(2), 0;<br>       0, x1(2), 0, x1(1)*x1(2)];<br>  b &#x3D; [x1 - x; x2 - x1];<br>  para &#x3D; A\b;<br>  N &#x3D; 100;<br>  p &#x3D; zeros(2, N+1);<br>  p(:, 1) &#x3D; x;<br>  for i &#x3D; 1:x<br>    p(:, n+1) &#x3D; pp_step(p(:, n), para);<br>  end<br>  subplot(1, 2, 1)<br>  plot(0:N, p(1, :), ‘r-‘, ‘LineWidth’, 3)<br>  title(“兔子”);<br>  subplot(1, 2, 2)<br>  plot(0:N, p(2, :), ‘b-‘, ‘LineWidth’, 3)<br>  title(“狼”);<br>  function y &#x3D; ppstep(x, para)<br>    [r, w, f, g] &#x3D; deal(para(1), para(2), para(3), para(4));<br>    y(1) &#x3D; (1 + r) * x(1) - f * x(1) * x(2)<br>    y(2) &#x3D; (1 + w) * x(1) + g * x(1) * x(2);<br>  end</p>
+</blockquote>
+</li>
+<li><p><code>pp_step()</code> 是一个子函数</p>
+</li>
+<li><p><code>deal()</code> 可以把一个数列中变量的值分发给另外的变量</p>
+</li>
+<li><p><code>A</code> 矩阵是 &#x3D;&#x3D;<strong>r, w, f, g</strong> 的系数矩阵&#x3D;&#x3D;</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study18/" data-id="cm0p3374g00059sl7bsgxh5zd" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study23/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study19/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/09/">September 2024</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study29/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study28/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study27/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study20/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study24/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

@@ -69,10 +69,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-study10" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-北太天元学习笔记/study29" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2024/09/05/study10/" class="article-date">
-  <time class="dt-published" datetime="2024-09-05T09:15:38.856Z" itemprop="datePublished">2024-09-05</time>
+    <a href="/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study29/" class="article-date">
+  <time class="dt-published" datetime="2024-09-05T09:27:08.206Z" itemprop="datePublished">2024-09-05</time>
 </a>
     
   </div>
@@ -81,56 +81,309 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1 id="北太天元学习10-如何写一个m函数"><a href="#北太天元学习10-如何写一个m函数" class="headerlink" title="北太天元学习10-如何写一个m函数"></a>北太天元学习10-如何写一个m函数</h1><p>啸知识点：</p>
-<ul>
-<li><code>n = input(&quot;...&quot;)</code> 运行时在屏幕上显示…的内容，并可以输入一个值，用 n 来接收</li>
-<li><code>break</code> 可以停止这次循环，并开始下一次循环（while, for循环等等）</li>
-<li><code>ctrl + Q</code> 可以退出运行程序</li>
-<li>文件命名规则：不能用数字开头，但中文可以 :)</li>
-<li><code>nargin</code> 是一个 “系统变量”，等于传入的参数数量</li>
-<li><code>return</code> 可以终止 m 函数的运行</li>
-<li><code>error(&quot;...&quot;)</code> 可以终止函数运行并且在命令行窗口用红字显示…的内容，即自定义报错信息（再也不用看奇奇怪怪的报错啦！）</li>
-<li><code>mod(x, y)</code> 和 <code>rem(x, y)</code> 有区别吗？<ol>
-<li>x 和 y 同号时没区别</li>
-<li>x 和 y 异号时，<code>mod(x, y)</code> 符号与 y 相同，<code>rem(x, y)</code> 符号与 x 相同<br> 例如：<code>mod(5, -3) = -1</code>，<code>rem(5, -3) = 2</code></li>
-</ol>
-</li>
-</ul>
-<h2 id="问题：判断数字n是否是素数"><a href="#问题：判断数字n是否是素数" class="headerlink" title="问题：判断数字n是否是素数"></a>问题：判断数字n是否是素数</h2><ul>
-<li><p>以前写的脚本模式</p>
-<blockquote>
-<p>while 1<br>  &nbsp;&nbsp;n &#x3D; input(“请输入一个正整数：”);<br>  &nbsp;&nbsp;&nbsp;&nbsp;if n &gt; 0 &amp;&amp; mod(n, 1) &#x3D;&#x3D; 1<br>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br>  &nbsp;&nbsp;&nbsp;&nbsp;end<br>  end<br>  if (n &#x3D;&#x3D; 1)<br>  &nbsp;&nbsp;素数判断结果 &#x3D; false<br>  elseif (n &#x3D;&#x3D; 2 || n &#x3D;&#x3D; 3)<br>  &nbsp;&nbsp;素数判断结果 &#x3D; true<br>  else<br>  &nbsp;&nbsp;% 计算n的平方根<br>  &nbsp;&nbsp;sqrt_n &#x3D; sqrt(n);<br>  &nbsp;&nbsp;% 检测 n 是否能被大于1且小于等于 sqrt_n 的数整除<br>  &nbsp;&nbsp;for m &#x3D; 2:sqrt_n<br>  &nbsp;&nbsp;   if mod(n, m) &#x3D;&#x3D; 0<br>  &nbsp;&nbsp;&nbsp;&nbsp;   素数判断结果 &#x3D; false<br>  &nbsp;&nbsp;   end<br>  end<br>  if (素数判断结果 &#x3D;&#x3D; true)<br>  &nbsp;&nbsp;fprintf(“%d 是素数”, n);</p>
-</blockquote>
-<p>但我们希望把判断一个数p是否是素数的算法重用，也就是要<strong>将p作为参数传入</strong>，然后函数计算出结果</p>
-</li>
-<li><p><strong>m 函数</strong>可以满足这个要求<br> 步骤：</p>
+        <h1 id="北太天元学习29-等待时间和指数分布"><a href="#北太天元学习29-等待时间和指数分布" class="headerlink" title="北太天元学习29-等待时间和指数分布"></a>北太天元学习29-等待时间和指数分布</h1><p>如果一个随机变量 X 的概率密度函数为<br>[<br>f(x) &#x3D;<br>\begin{cases}<br>\lambda e^{-\lambda x} &amp; \text{ } x &gt; 0,<br>\<br>0 &amp; \text{ } x \le 0.<br>\end{cases}<br>]<br>那么 X 满足 <strong>指数分布</strong>，记作[X \sim Exponential(\lambda)]<br>其累积分布函数 (cdf) 为<br>[F(x) &#x3D; P(X \le x) &#x3D; \int_{-\infty}^{x} f(x) dx &#x3D; 1 - e^{-\lambda x}]</p>
+<hr>
+<p>提问：<br>我们用 <code>rand</code> 生成均匀分布的随机数，<br>用 <code>randn</code> 生成正态分布的随机数，<br>那怎么生成指数分布的随机数呢 ?</p>
 <ol>
-<li>建立一个文件，叫isPrimeEx()，&#x3D;&#x3D;注意文件名和函数名要一样&#x3D;&#x3D;;（prime：质数，ex：example）</li>
-<li>把算法放入<code>function</code>和<code>end</code>圈定的范围内，格式为：<blockquote>
-<p>function 返回值 &#x3D; 函数名(参数)<br>  &nbsp;&nbsp;代码<br>  end</p>
-</blockquote>
-</li>
+<li>生成（0， 1）的随机数 rand</li>
+<li>由 F(x) &#x3D; r 算出 [x &#x3D; -log(1-rand)&#x2F;\lambda \text{（北太天元里log是自然对数，log10(10) &#x3D; 1）}]</li>
 </ol>
-<p>下面把以前写的脚本改成m函数：</p>
+<p>x 就是符合指数分布的随机数<br>代码如下：</p>
+<pre><code>n = 1000  % 实验次数
+a = 2  % 参数
+x = zeros(n, 1);
+for i = 1:n
+    x(i) = -log(1-rand)/a;
+end
+histogram(x, 20);
+% xlabel(生成的数);
+% ylabel(生成的概率);
+title(&#39;生成指数分布随机数&#39;);
+</code></pre>
+<hr>
+<p>我们用一个例子研究 <strong>指数分布</strong> 与 <strong>泊松分布</strong> 的关系：<br>&nbsp;&nbsp;&nbsp;&nbsp;假设一个灯泡的平均寿命是100个小时，我们想知道1000个小时里我们将使用多少个灯泡(假设灯泡熄灭后会立即更换)<br>&nbsp;&nbsp;&nbsp;&nbsp;因为1000&#x2F;100 &#x3D; 10，所以泊松分布的速率为10。我们进行2000次模拟：</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study29/" data-id="cm0p3374t000e9sl74gan8rzl" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-北太天元学习笔记/study28" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study28/" class="article-date">
+  <time class="dt-published" datetime="2024-09-05T09:27:08.206Z" itemprop="datePublished">2024-09-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="北太天元学习28——正态分布"><a href="#北太天元学习28——正态分布" class="headerlink" title="北太天元学习28——正态分布"></a>北太天元学习28——正态分布</h1><p>正态分布（又叫高斯分布）是最常见的连续分布函数之一。其概率密度函数如下：<br>[f(x) &#x3D;  1&#x2F;(sqrt(2*\pi)*\sigma)<em>exp(-(x-\mu)^2&#x2F;(2</em>\sigma^2))，\mu是分布的期望，\sigma是标准差]<br>标准差越大，图像越矮。图像代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">x = -5:0.01:5;</span><br><span class="line">y1 = N(x, 0, 1);</span><br><span class="line">y2 = N(x, 0, 3);</span><br><span class="line">y3 = N(x, 0, 1/3);</span><br><span class="line">y4 = N(x, -1, 1);</span><br><span class="line">hold on</span><br><span class="line">plot(x, y1, &#x27;red&#x27;, &#x27;LineWidth&#x27;, 3);</span><br><span class="line">plot(x, y2, &#x27;blue&#x27;, &#x27;LineWidth&#x27;, 3);</span><br><span class="line">plot(x, y3, &#x27;green&#x27;, &#x27;LineWidth&#x27;, 3);</span><br><span class="line">plot(x, y4, &#x27;black&#x27;, &#x27;LineWidth&#x27;, 3);</span><br><span class="line">legend(&#x27;N(0, 1)&#x27;, &#x27;N(0, 3)&#x27;, &#x27;N(0, 1/3)&#x27;, &#x27;N(-1, 1)&#x27;);</span><br><span class="line">hold off</span><br><span class="line"></span><br><span class="line">function y = N(x, e, p)</span><br><span class="line">    y = 1/sqrt(2*pi)/p*exp(-(x-e).^2/(2*p^2))</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+
+<p>由于 f(x) 的原函数没有表达式，所以算累积分布函数[P(a &lt;&#x3D; x &lt;&#x3D; b) &#x3D; \int_a^bf(x)dx]相当麻烦。除了特殊的a, b值，一般不能直接求解</p>
+<p>过去，统计学家会把[X - N(\mu, \sigma)] 的正态分布转化成[Z - N(0, 1)]<br>具体来说，就是引入了随机变量[Z &#x3D; (X - \mu)&#x2F;\sigma]<br>统计学家使用 Z表 ，该表根据一系列不同的 a 值给出了<br>[P(X &lt;&#x3D; a) &#x3D; \int_{-\infty}^af(x)dx]<br>的值</p>
+<p>使用北太天元，我们可以绕过标准化的步骤。<br>在 examples&#x2F;normcdf.m 函数中，可以直接计算任意正态分布的累积分布函数</p>
+<p>我们可以用 <code>randn</code> 生成服从 N(0, 1) 的随机数<br>[要生成服从N(\mu, \sigma)的随机数，可以用 \mu + randn * \sigma]</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study28/" data-id="cm0p3374y000f9sl7aoqufuc6" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-北太天元学习笔记/study27" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study27/" class="article-date">
+  <time class="dt-published" datetime="2024-09-05T09:27:08.198Z" itemprop="datePublished">2024-09-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="北太天元学习27——蒙特卡罗积分"><a href="#北太天元学习27——蒙特卡罗积分" class="headerlink" title="北太天元学习27——蒙特卡罗积分"></a>北太天元学习27——蒙特卡罗积分</h1><p>一个栗子理解蒙特卡罗积分：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">% 在x: [0, pi], y: [0, 1]随机生成 n 个点</span><br><span class="line">n = 30000;</span><br><span class="line">x = pi*rand(n, 1);</span><br><span class="line">y = rand(n, 1);</span><br><span class="line"></span><br><span class="line">% 定义 f(x) = sin(x)</span><br><span class="line">f = @(t) sin(t);</span><br><span class="line"></span><br><span class="line">% 算出在 f(x) 下面的点，得出占总点集的概率，乘以面积pi得到积分</span><br><span class="line">和 = sum(y &lt;= f(x));</span><br><span class="line">直接积分 = 和/n*pi;</span><br><span class="line"></span><br><span class="line">% 算出积分面积的平均值，乘以长就得到积分</span><br><span class="line">平均值 = mean(f(x));</span><br><span class="line">间接积分 = 平均值*pi;</span><br><span class="line"></span><br><span class="line">% 画散点图</span><br><span class="line">ind1 = find(y &lt;= f(x));</span><br><span class="line">ind2 = find(y &gt; f(x));</span><br><span class="line">hold on</span><br><span class="line">plot(0:4, zeros(5, 1), &#x27;LineWidth&#x27;, 3, &#x27;color&#x27;, &#x27;black&#x27;);</span><br><span class="line">plot(zeros(1, 1), 0:1, &#x27;LineWidth&#x27;, 3, &#x27;color&#x27;, &#x27;black&#x27;);</span><br><span class="line">sh1 = scatter(x(ind1), y(ind1), &#x27;filled&#x27;);</span><br><span class="line">sh2 = scatter(x(ind2), y(ind2), &#x27;filled&#x27;);</span><br><span class="line">set(sh1, &#x27;SizeData&#x27;, 200);</span><br><span class="line">set(sh2, &#x27;SizeData&#x27;, 200);</span><br><span class="line">hold off</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study27/" data-id="cm0p3374q000d9sl7b0ltave9" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-北太天元学习笔记/study20" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study20/" class="article-date">
+  <time class="dt-published" datetime="2024-09-05T09:27:08.190Z" itemprop="datePublished">2024-09-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="北太天元学习20——多准则决策-Multi-criteria-decision-making-方法"><a href="#北太天元学习20——多准则决策-Multi-criteria-decision-making-方法" class="headerlink" title="北太天元学习20——多准则决策(Multi-criteria decision making)方法"></a>北太天元学习20——多准则决策(Multi-criteria decision making)方法</h1><p>每个人做决策时往往要考虑很多因素</p>
+<p>宋小煜同学是一名高中毕业生，想在无意识心理学和玄学中选一个作为自己的专业。他要考虑三个因素：个人喜好(LOVE)、发展空间(SPACE)和就业前景(MONEY)<br>宋小煜同学面临的就是一个“既要，又要，还要”的多准则问题<br>解决这类问题，我们经常采用<strong>层次分析法</strong>，和上p的谷歌搜索有亿点像<br>让我们来问宋小煜同学，如果 love 的重要性是 1 的话，space 的重要性是几？这是个选择题，可以选 非常不重要、不重要、一丢丢不重要、一样重要、一丢丢重要、重要、非常重要。分别用 1&#x2F;7、1&#x2F;5、1&#x2F;3、1、3、5、7 表示<br>分别设 love、space、money 为 1 ，我们得到下面的矩阵：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;love space money<br>love&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&#x2F;3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&#x2F;7<br>space &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&#x2F;3<br>money &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1<br>观察这个矩阵，发现每列的和不是 1 ，so 不能把它看成一个状态转移矩阵。但每行的含义更明确，所以我们可以把这个矩阵转置一下：<br><code>A = A.&#39;</code><br>完事之后，我们以第一列[1; 1&#x2F;3; 1&#x2F;7]为例，这个就和上p的含义很像了，表示 love 对其他因素的作用。我们用<br><code>A(:, 1) = A(:, 1)/norm(A(:, 1))</code><br>对这个向量进行“归一化”，也就是把它变成单位向量[21&#x2F;31; 7&#x2F;31; 3&#x2F;31]<br>对其他列我们也做一样的操作，得到一个新矩阵（我觉得就是状态转移矩阵）<br>然后我们做和上p一样的丝滑小连招：</p>
+<ol>
+<li>找最大的特征值对应的特征向量</li>
+<li>把它化成单位向量</li>
+<li>把每个元素取个绝对值（负的肯定不对劲嘛）</li>
+</ol>
+<p>就能找到 love、space、money 在宋小煜同学心中的重要性了。<br>这个例题的答案是[0.68, 0.23, 0.09]，我们记作 a<br>然后我们问宋小煜同学 无意识心理学 和 玄学 对 love 的重要性，具体流程和前面一样（加入玄学是1……）<br>得到新的向量 b<del>love</del> ：[0.23; 0.77]<br>同理可得 b<del>space</del> 和 b<del>money</del></p>
+<p>最后就能得到这两个学科的总作用了:<br>无意识心理学：a * [b<del>love</del>(1); b<del>space</del>(1), b<del>money</del>(1)]<br>玄学：a * [b<del>love</del>(2); b<del>space</del>(2), b<del>money</del>(2)]</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study20/" data-id="cm0p3374h00089sl735h81qdh" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-北太天元学习笔记/study24" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study24/" class="article-date">
+  <time class="dt-published" datetime="2024-09-05T09:27:08.190Z" itemprop="datePublished">2024-09-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="北太天元学习24-保费定价和二项分布"><a href="#北太天元学习24-保费定价和二项分布" class="headerlink" title="北太天元学习24-保费定价和二项分布"></a>北太天元学习24-保费定价和二项分布</h1><p><strong>二项分布</strong>用于模拟多次实验的情况，每个实验都有两种可能性：成功或失败</p>
+<p>小栗子：<br>投掷一枚硬币，让 X_i 表示第 i 次实验出现的结果，1&#x2F;0 表示成功&#x2F;失败。导出一个新的随机变量 X &#x3D; X_1 + X_2 + ……<br>那么 X 的取值可以为0，1，2，3，……, n。<br>X &#x3D; k 的概率是 P(X &#x3D; k) &#x3D; C_n^k * p^k * (1-p)^(n-k)<br>其中 C_n^k 表示从 n 个不同的元素里选 k 个的组合数<br>我们说 X 服从二项分布，记作 X ~ B(n, k)</p>
+<p>小例题：<br>某保险公司推出意外伤害险，每位参保人交付保险费，出险时获得4万元保险费。已知一年中一个人的出现率为0.3%，有1000个人参加保险，要让公司获利10万元以上的概率超过90%，问公司至少要向每位参保人收多少参保费<br>思路：<br>每人交 x 元，假设一年中有 y 个人申请理赔，要让公司获利10万元的概率高于90%，则<br>P(1000 * x - 40000 * y &gt;&#x3D; 100000) &gt; 0.9<br>即<br>P((y &lt;&#x3D; 1000 * x - 100000)&#x2F;40000) &gt; 0.9<br>我们可以算出 y 的二项分布，找到 P(y &lt;&#x3D; k) &#x3D; 0.9 对应的 k 值就能算出 x 了</p>
+<p>代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">n = 2000;  % 人数</span><br><span class="line">p = 0.003;  % 出险概率</span><br><span class="line">f = binomial_pdf(n, p);</span><br><span class="line">bar(0:n, f);</span><br><span class="line">xlabel(&quot;事件A发生的次数&quot;);</span><br><span class="line">ylabel(&quot;概率&quot;);</span><br><span class="line">hold on</span><br><span class="line">plot(0:n, f, &#x27;LineWidth&#x27;, 6);</span><br><span class="line">str = sprintf(&quot;二项分布B(%d, %3.2d)&quot;, n, p);</span><br><span class="line">title(str);</span><br><span class="line">hold off</span><br><span class="line">k = max(find(cumsum(f) &lt;= 0.9));</span><br><span class="line">x = (40000 * k + 100000)/1000;</span><br><span class="line"></span><br><span class="line">functon f = binomial_pdf(n, p)</span><br><span class="line">    f = zeros(1, n+1);</span><br><span class="line">    for i = 0:n</span><br><span class="line">        f(i+1) = nchoosek(n, i) * p^i * (1-p)^(n-i);</span><br><span class="line">    end</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">function cnk = nchoosek(n, i)</span><br><span class="line">    if n == i || i == 0</span><br><span class="line">        cnk = 1;</span><br><span class="line">        return;</span><br><span class="line">    end</span><br><span class="line">    cnk = factorial(n)/factorial(k)/factorial(n-k);</span><br><span class="line">end</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>factorial(n)</code> 得到 n 的阶乘</li>
+<li><code>find(cumsum(vector) &lt;= 0.9)</code> 得到 vector 中的元素从前往后求和不大于0.9 的 索引</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study24/" data-id="cm0p3374i00099sl7abvj2389" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-北太天元学习笔记/study22" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study22/" class="article-date">
+  <time class="dt-published" datetime="2024-09-05T09:27:08.190Z" itemprop="datePublished">2024-09-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="北太天元学习22-醉汉回家"><a href="#北太天元学习22-醉汉回家" class="headerlink" title="北太天元学习22-醉汉回家"></a>北太天元学习22-醉汉回家</h1><p>在上p中，我们用到了这个函数：</p>
 <blockquote>
-<p>function result &#x3D; isPrimeEx(p)<br>&nbsp;&nbsp;if nargin ~&#x3D; 1<br>&nbsp;&nbsp;&nbsp;&nbsp;error(“请输入一个正整数”);<br>&nbsp;&nbsp;end<br>&nbsp;&nbsp;while 1<br>  &nbsp;&nbsp;&nbsp;&nbsp;n &#x3D; input(“请输入一个正整数：”);<br>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if n &gt; 0 &amp;&amp; mod(n, 1) &#x3D;&#x3D; 1<br>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end<br>  end<br>  &nbsp;&nbsp;if (n &#x3D;&#x3D; 1)<br>  &nbsp;&nbsp;&nbsp;&nbsp;素数判断结果 &#x3D; false;<br>  &nbsp;&nbsp;&nbsp;&nbsp;return;<br>  &nbsp;&nbsp;elseif (n &#x3D;&#x3D; 2 || n &#x3D;&#x3D; 3)<br>  &nbsp;&nbsp;&nbsp;&nbsp;素数判断结果 &#x3D; true;<br>  &nbsp;&nbsp;&nbsp;&nbsp;return;<br>  &nbsp;&nbsp;else<br>  &nbsp;&nbsp;&nbsp;&nbsp;% 计算n的平方根<br>  &nbsp;&nbsp;&nbsp;&nbsp;sqrt_n &#x3D; sqrt(n);<br>  &nbsp;&nbsp;&nbsp;&nbsp;% 检测 n 是否能被大于1且小于等于 sqrt_n 的数整除<br>  &nbsp;&nbsp;&nbsp;&nbsp;for m &#x3D; 2:sqrt_n<br>  &nbsp;&nbsp;&nbsp;&nbsp;   if mod(n, m) &#x3D;&#x3D; 0<br>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   素数判断结果 &#x3D; false;<br>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return;<br>  &nbsp;&nbsp;&nbsp;&nbsp;   end<br>  &nbsp;&nbsp;end<br>  end</p>
+<p>function move &#x3D; move_rand(r)<br>move &#x3D; sign(r - 0.5);<br>end</p>
 </blockquote>
-<p>  <del>其实就是加了个头和尾嘛</del><br>  当然，m 函数的格式还可以是</p>
+<p>先只看 x 轴<br>很显然，当我们测试总次数为奇数时，醉汉不会在偶数处停下<br>总次数为偶数时，不会再奇数处停下</p>
+<p>所以我们要稍稍改进一下<br>代码如下：</p>
 <blockquote>
-<p>function [输出结果列表] &#x3D; 函数名(输入参数列表)<br>  &nbsp;&nbsp;巴拉巴拉；<br>  end</p>
+<p>function move &#x3D; move_rand(r)<br>move &#x3D; zeros(size(r))</p>
+<p>ind &#x3D; find(r &lt; 1&#x2F;3)<br>if ~isempty(ind)<br>move(ind) &#x3D; -1<br>end</p>
+<p>ind &#x3D; find(r &gt;&#x3D; 1&#x2F;3 &amp;&amp; r &lt; 2&#x2F;3)<br>if ~isempty(ind)<br>move(ind) &#x3D; 0<br>end</p>
+<p>ind &#x3D; find(r &gt; 2&#x2F;3)<br>if ~isempty(ind)<br>move(ind) &#x3D; 1<br>end<br>end</p>
 </blockquote>
-<p>  例如：</p>
-<blockquote>
-<p>function [m, n] &#x3D; mEx(x, y)<br>  &nbsp;&nbsp;m &#x3D; x + y;<br>  &nbsp;&nbsp;n &#x3D; x - y;<br>  &nbsp;&nbsp;return;<br>  end<br>  % 可以这么用：<br>  [res1, res2] &#x3D; mEx(2, 3);<br>  % 如果不用列表来接收，比如只写一个 mEx(2, 3)，那 mEx(2, 3) 就只返回 5</p>
-</blockquote>
+<ul>
+<li><code>find(condition)</code> 可以找到满足条件的索引</li>
+<li><code>isempty(object)</code> 可以判断对象是否为空</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study22/" data-id="cm0p3374i000a9sl7dhrl711u" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-北太天元学习笔记/study23" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study23/" class="article-date">
+  <time class="dt-published" datetime="2024-09-05T09:27:08.190Z" itemprop="datePublished">2024-09-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="北太天元学习23-拯救女神"><a href="#北太天元学习23-拯救女神" class="headerlink" title="北太天元学习23-拯救女神"></a>北太天元学习23-拯救女神</h1><p>具体例题太简单了，这里不写了<br>主要讲了几个知识点：</p>
+<ol>
+<li><code>histogram(vector)</code> 可以以向量中的元素为横轴，以元素出现的频数为纵轴画直方图</li>
+<li><code>mean(vector)</code> 可以把向量中的元素取平均值</li>
+<li><code>std(vector)</code> 求向量中元素的标准差</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study23/" data-id="cm0p3374m000c9sl7btgwbdvd" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-北太天元学习笔记/study18" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study18/" class="article-date">
+  <time class="dt-published" datetime="2024-09-05T09:27:08.182Z" itemprop="datePublished">2024-09-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="北太天元学习18-离散模型"><a href="#北太天元学习18-离散模型" class="headerlink" title="北太天元学习18-离散模型"></a>北太天元学习18-离散模型</h1><h2 id="以人口模型为例"><a href="#以人口模型为例" class="headerlink" title="以人口模型为例"></a>以人口模型为例</h2><p>设 x_{n} 是时间 n 时的人口数量，则递归关系可以由以下方程给出：<br><code>x_&#123;n&#125; = f (x_&#123;0&#125;, x_&#123;1&#125;, x_&#123;2&#125;, ......, x_&#123;n-1&#125;)</code><br>也就是说，x_{n} 是先前所有时间人口的函数。</p>
+<ul>
+<li><p>形式为 <code>x_&#123;n&#125; = f (x_&#123;n-1&#125;)</code> 称作一阶递推关系，因为它只依赖于上一个时间的值；<br><code>x_&#123;n&#125; = f (x_&#123;n-1&#125;, x_&#123;n-2&#125;)</code> 是二阶递推关系</p>
+<p><strong>如果一个模型用一个或多个递推关系来描述某些现象，则称其为离散动力系统</strong></p>
+</li>
+<li><p>假设人口在下一时间的增长与当前人口成正比，则<br><code>x_&#123;n+1&#125; - x_&#123;n&#125; = k*x_&#123;n&#125;</code> ，即<code>x_&#123;n+1&#125; = (k+1)*x_&#123;n&#125;</code><br>这是一个一阶递推关系，被称为<strong>指数增长模型</strong>，也叫<strong>马尔萨斯模型</strong></p>
+</li>
+<li><p>通常情况下，人口不会指数增长，增长到一定程度会减缓。<strong>逻辑斯蒂克模型</strong>刻画了增长率随人口接近最大容量的变化：<br> <code>x_&#123;n+1&#125; - x_&#123;n&#125; = r * x_&#123;n&#125; * (1 - x_&#123;n&#125;/K)</code><br> 其中K是承载能力。<br> 化成二次函数就是：<code>x_&#123;n+1&#125; = (1 + r) * x_&#123;n&#125; - r * x_&#123;n&#125;^2/K</code><br> 这是一个非线性递推关系</p>
+</li>
+<li><p>对于指数增长模型，根据 x_{0} 和 x_{1} ，可以确定 k</p>
+</li>
+<li><p>对于逻辑斯蒂克模型，根据 x_{0}, x_{1}, x_{2}, 可以确定 r 和 K</p>
 </li>
 </ul>
-<p>&#x3D;&#x3D;视频结尾：会这些就差不多毕业了！&#x3D;&#x3D;</p>
+<hr>
+<p>现在引入一个新词语 —— 态</p>
+<ul>
+<li><p>我们仅仅考虑生活在草原上的两种动物：兔子和狼 构成的系统</p>
+</li>
+<li><p>这个系统在时间 t 的态可以用向量表示：x_{t} &#x3D; [ 兔_{t}, 狼_{t} ]  </p>
+</li>
+<li><p>下面给出一个简单的 <strong>捕食者-被捕食者（predator_pray）</strong> 离散模型<br><code>兔_&#123;t + 1&#125; = (1 + r) * 兔_&#123;t&#125; - f * 狼_&#123;t&#125; * 兔_&#123;t&#125;</code><br><code>狼_&#123;t + 1&#125; = (1 + w) * 狼_&#123;t&#125; + g * 狼_&#123;t&#125; * 兔_&#123;t&#125;</code><br>r, w 是兔子和狼的自然增长率，f 和 g 反应兔狼相逢对他们数量的影响。这些参数可以由 <code>[兔_&#123;0&#125;; 狼_&#123;0&#125;]</code>, <code>[兔_&#123;1&#125;; 狼_&#123;1&#125;]</code> 来确定。<br>下面给出脚本代码：</p>
+<blockquote>
+<p>x &#x3D; [1000, 1];<br>  r &#x3D; 0.01; f &#x3D; 1e-4; w &#x3D; 2e-3; g &#x3D; 3e-5;<br>  para &#x3D; [r; w; w; g];<br>  x1 &#x3D; pp_step(x, para);<br>  x2 &#x3D; pp_step(x1, para);<br>  A &#x3D; [x(1), 0, -x(1)*x(2), 0;<br>       0, x(2), 0, x(1)*x(2);<br>       x1(1), 0, -x1(1)*x1(2), 0;<br>       0, x1(2), 0, x1(1)*x1(2)];<br>  b &#x3D; [x1 - x; x2 - x1];<br>  para &#x3D; A\b;<br>  N &#x3D; 100;<br>  p &#x3D; zeros(2, N+1);<br>  p(:, 1) &#x3D; x;<br>  for i &#x3D; 1:x<br>    p(:, n+1) &#x3D; pp_step(p(:, n), para);<br>  end<br>  subplot(1, 2, 1)<br>  plot(0:N, p(1, :), ‘r-‘, ‘LineWidth’, 3)<br>  title(“兔子”);<br>  subplot(1, 2, 2)<br>  plot(0:N, p(2, :), ‘b-‘, ‘LineWidth’, 3)<br>  title(“狼”);<br>  function y &#x3D; ppstep(x, para)<br>    [r, w, f, g] &#x3D; deal(para(1), para(2), para(3), para(4));<br>    y(1) &#x3D; (1 + r) * x(1) - f * x(1) * x(2)<br>    y(2) &#x3D; (1 + w) * x(1) + g * x(1) * x(2);<br>  end</p>
+</blockquote>
+</li>
+<li><p><code>pp_step()</code> 是一个子函数</p>
+</li>
+<li><p><code>deal()</code> 可以把一个数列中变量的值分发给另外的变量</p>
+</li>
+<li><p><code>A</code> 矩阵是 &#x3D;&#x3D;<strong>r, w, f, g</strong> 的系数矩阵&#x3D;&#x3D;</p>
+</li>
+</ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/09/05/study10/" data-id="cm0p2yvfy0001ekl7g1s7gifo" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study18/" data-id="cm0p3374g00059sl7bsgxh5zd" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -142,33 +395,45 @@
 
 
   
-    <article id="post-text" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-北太天元学习笔记/study19" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2024/09/05/text/" class="article-date">
-  <time class="dt-published" datetime="2024-09-05T07:28:35.000Z" itemprop="datePublished">2024-09-05</time>
+    <a href="/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study19/" class="article-date">
+  <time class="dt-published" datetime="2024-09-05T09:27:08.182Z" itemprop="datePublished">2024-09-05</time>
 </a>
     
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/09/05/text/">text</a>
-    </h1>
-  
-
-      </header>
-    
     <div class="e-content article-entry" itemprop="articleBody">
       
-        
+        <h1 id="北太天元学习19-谷歌搜索算法-page-rank-algorithm-简介"><a href="#北太天元学习19-谷歌搜索算法-page-rank-algorithm-简介" class="headerlink" title="北太天元学习19-谷歌搜索算法(page rank algorithm)简介"></a>北太天元学习19-谷歌搜索算法(page rank algorithm)简介</h1><p>我们假设有4个网页<br>在初始时刻，网页1有很多人在浏览，其他网页无人浏览<br>所有浏览网页的人记作1<br>每隔一个单位时间都有部分人转移到别的网页<br>定义在时间n时的态为<br><code>p_n = [p_&#123;1, n&#125;, p_&#123;2, n&#125;, p_&#123;3, n&#125;, p_&#123;4, n&#125;]</code><br>其中p_{i, n}表示在n时刻处在网页i上的浏览者的比例<br>所以初始态<code>p_0 = [1, 0, 0, 0]</code><br><strong>p_{n + 1} 和 p_{n} 之间的关系是建模的重点</strong>：<br><code>p_&#123;n + 1&#125; = A * p_&#123;n&#125;</code><br>其中矩阵 A 称为<strong>状态转移矩阵</strong><br>则<code>p_&#123;1, n+1&#125; = A(1, 1) * p_&#123;1, n&#125; + A(1, 2) * p_&#123;2, n&#125; + A(1, 3) * p_&#123;3, n&#125; + A(1, 4) * p_&#123;4, n&#125;</code><br>如果考虑有人不想浏览网页了，可以增加第五个“网页”，到第五个“网页”就表示下网了。</p>
+<p>我们可以这样来建模：</p>
+<ol>
+<li>如果第i个网页有k个其他网页的链接，那么转移到它们的概率是1&#x2F;(k + 1)</li>
+<li>如果该网页没有其他网页的链接，那么浏览者会随机选择一个网站</li>
+</ol>
+<p>给一个具体的例子：<br>网页1拥有链接2、4，网页2没有链接，网页3有链接1，网页4有链接2、3<br>那么 A &#x3D;<br>1&#x2F;3 1&#x2F;4 1&#x2F;2 0<br>1&#x2F;3 1&#x2F;4 0 1&#x2F;3<br>0 1&#x2F;4 1&#x2F;2 1&#x2F;3<br>1&#x2F;3 1&#x2F;4 0 1&#x2F;3<br>x_0 &#x3D; [1; 0; 0; 0]</p>
+<p>脚本代码如下：</p>
+<blockquote>
+<p>A &#x3D; [1&#x2F;3 1&#x2F;4 1&#x2F;2 0<br>1&#x2F;3 1&#x2F;4 0 1&#x2F;3<br>0 1&#x2F;4 1&#x2F;2 1&#x2F;3<br>1&#x2F;3 1&#x2F;4 0 1&#x2F;3];<br>初始p &#x3D; [1; 0; 0; 0];<br>N &#x3D; 20;<br>p &#x3D; zeros(4, N);<br>p(:, 1) &#x3D; 初始p;<br>for n &#x3D; 1:N<br>p(:, n + 1) &#x3D; A * p(:, n);<br>end<br>hold on<br>for j &#x3D; 1:4<br>plot(1:N, p(j, :), ‘LineWidth’, 3);<br>str(j) &#x3D; sprintf(“网页%d”, j);<br>label_str(j) &#x3D; sprintf(“网页%d最终占比%d%%”, j, 100*p(:, end));<br>end<br>hold off;<br>legend(str);<br>figure(2)<br>pie(p(:, end), label_str);</p>
+</blockquote>
+<ul>
+<li><code>str(j) = sprintf(......)</code> 将输出写入到字符串中，而不是直接输出到屏幕</li>
+<li><code>figure(2)</code> 创建编号为 2 的图形窗口。如果 2 号窗口已经存在，它将霸占这个窗口</li>
+<li><code>pie(p(:end), label_str)</code> 画一个饼图，把label_str里的字符串按顺序放在饼各部分旁边</li>
+</ul>
+<p>视频最后有个发现：最终态是稳定的，并且这个态 ppp 和 A 最大特征值对应的特征向量 pp 成比例:<br><code>ppp = pp/norm(pp, 1)</code></p>
+<ul>
+<li><code>norm(pp, 1)</code> 得到 pp 的长度</li>
+</ul>
+<p>但原理是啥并没有解释</p>
+<p>&#x3D;&#x3D;此算法可能在足球比赛、投票等题目中出现&#x3D;&#x3D;</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/09/05/text/" data-id="cm0p2yvg00002ekl7cz201syw" data-title="text" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study19/" data-id="cm0p3374h00069sl78jo881ua" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -180,46 +445,31 @@
 
 
   
-    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-北太天元学习笔记/study17" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2024/09/05/hello-world/" class="article-date">
-  <time class="dt-published" datetime="2024-09-05T07:19:02.740Z" itemprop="datePublished">2024-09-05</time>
+    <a href="/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study17/" class="article-date">
+  <time class="dt-published" datetime="2024-09-05T09:27:08.182Z" itemprop="datePublished">2024-09-05</time>
 </a>
     
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/09/05/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+        <h1 id="北太天元学习17-特征向量和特征值"><a href="#北太天元学习17-特征向量和特征值" class="headerlink" title="北太天元学习17-特征向量和特征值"></a>北太天元学习17-特征向量和特征值</h1><p>视频前面讲了 特征值和特征向量 ，在《线性代数》里也学过了</p>
+<ul>
+<li><code>eig(A)</code> 求矩阵 A 的特征值（eig 是 eigenvalue 特征值 的缩写）</li>
+<li><code>[V, D] = eig(A)</code>可以让 A 的 特征向量 组成 V 的列，A 的 特征值 组成 D 主对角线上的元素</li>
+<li><code>sum(vector)</code> 能算出向量上所有元素的和</li>
+<li><code>norm(vector)</code> 能算出向量的“二范数”，个人理解就是向量的长度。北太天元算出来的<strong>特征向量的二范数</strong>都是1</li>
+<li>n x n 对角矩阵的特征值就是对角线上的数，特征向量就是 n 阶单位矩阵的列向量</li>
+</ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/09/05/hello-world/" data-id="cm0p2yvft0000ekl7bfvfc196" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study17/" data-id="cm0p3374h00079sl7gv3k86h5" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -232,6 +482,11 @@
 
   
 
+
+  <nav id="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+  </nav>
 
 </section>
         
@@ -262,15 +517,23 @@
       <ul>
         
           <li>
-            <a href="/2024/09/05/study10/">(no title)</a>
+            <a href="/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study29/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2024/09/05/text/">text</a>
+            <a href="/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study28/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2024/09/05/hello-world/">Hello World</a>
+            <a href="/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study27/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study20/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study24/">(no title)</a>
           </li>
         
       </ul>

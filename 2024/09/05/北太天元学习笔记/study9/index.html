@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="北太天元学习9–绘制散点图一些小指令 clc 清屏 clear all 清除工作区 clf 清除图里面的内容 close all 关掉所有的图  上面这几个一起用就能保证界面干净 画图技巧 x &#x3D; 0:0.01:2pi;y_sinx &#x3D; sin(x);y_cosx &#x3D; cos(x);x_point &#x3D; 0:pi&#x2F;2:2pi;正弦_point &amp;#x">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study9/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="北太天元学习9–绘制散点图一些小指令 clc 清屏 clear all 清除工作区 clf 清除图里面的内容 close all 关掉所有的图  上面这几个一起用就能保证界面干净 画图技巧 x &#x3D; 0:0.01:2pi;y_sinx &#x3D; sin(x);y_cosx &#x3D; cos(x);x_point &#x3D; 0:pi&#x2F;2:2pi;正弦_point &amp;#x">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/image/scatter.png">
+<meta property="article:published_time" content="2024-09-05T09:27:08.159Z">
+<meta property="article:modified_time" content="2024-08-08T04:54:45.456Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/image/scatter.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-北太天元学习笔记/study9" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study9/" class="article-date">
+  <time class="dt-published" datetime="2024-09-05T09:27:08.159Z" itemprop="datePublished">2024-09-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="北太天元学习9–绘制散点图"><a href="#北太天元学习9–绘制散点图" class="headerlink" title="北太天元学习9–绘制散点图"></a>北太天元学习9–绘制散点图</h1><h2 id="一些小指令"><a href="#一些小指令" class="headerlink" title="一些小指令"></a>一些小指令</h2><ul>
+<li><code>clc</code> 清屏</li>
+<li><code>clear all</code> 清除工作区</li>
+<li><code>clf</code> 清除图里面的内容</li>
+<li><code>close all</code> 关掉所有的图</li>
+</ul>
+<p>上面这几个一起用就能保证界面干净</p>
+<h2 id="画图技巧"><a href="#画图技巧" class="headerlink" title="画图技巧"></a>画图技巧</h2><blockquote>
+<p>x &#x3D; 0:0.01:2<em>pi;<br>y_sinx &#x3D; sin(x);<br>y_cosx &#x3D; cos(x);<br>x_point &#x3D; 0:pi&#x2F;2:2</em>pi;<br>正弦_point &#x3D; sin(x_point);<br>余弦_point &#x3D; cos(x_point);</p>
+<p>hold on  % 保证前一个图不会被后一个图冲掉，即在页面上保留多张图<br>plot(x, y_sinx, “LineWidth”, 2.0);  % “LineWidth 可以设置线宽”<br>plot(x, y_cosx, “LineWidth”, 4.0);<br>sh1 &#x3D; scatter(x_point, 正弦_point, “filled”);  % 用scatter 来画散点，”filled 表示颜色填充”<br>sh2 &#x3D; scatter(x_point, 余弦_point);<br>set(sh1, ‘SizeData’, 500);  % SizeData 控制散点大小<br>set(sh2, ‘SizeData’, 1000);<br>set(sh2, ‘LineWidth’, 7);<br>% 设置散点sh2边缘颜色(rgb值)、sh1填充颜色、sh2形状<br>set(sh2, ‘MarkerEdgeColor’, [1, 0, 0]);<br>set(sh2, ‘MarkerFaceColor’, [0, 0.5, 0.9]);<br>set(sh2, “Marker”, ‘+’);<br>legend(“sinx”, “cosx”, “sin点”, “cos点”, ‘FontSize’, 18); % 取名<br>hold off; % 与 hold on 相配</p>
+</blockquote>
+<ul>
+<li>具体图如下：<img src="/image/scatter.png" alt="本地路径" title="示例图"></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study9/" data-id="cm0p33750000j9sl7hbpdd1vp" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study10/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study5/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/09/">September 2024</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study29/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study28/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study27/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study20/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/09/05/%E5%8C%97%E5%A4%AA%E5%A4%A9%E5%85%83%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/study24/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
